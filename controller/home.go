@@ -1,8 +1,8 @@
 package controller 
 
 import (
-    "net/http"
     "log"
+    "net/http"
     
     "github.com/ty/crud_web/model"
     "github.com/ty/crud_web/view"
@@ -10,12 +10,16 @@ import (
 
 func registerHomeHandle() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        log.Println("handle home")
         // first, get home template
         // then, find all user data
         users := model.GetTotalUsers()
         // load html
-        err := view.HomeTemplate.Execute(w, users)
-        if err != nil {
+        tmplData := &view.TmplData{
+            Type: "home",
+            Value: users,
+        }
+        if err := view.ExecuteTemplate(w, tmplData); err != nil {
             log.Println(err)
         }
     })

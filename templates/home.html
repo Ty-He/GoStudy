@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>User Manager</title>
-</head>
-<body>
+{{ define "home" }}
     <h1 class="title">欢迎来到用户管理页面</h1>
     <div class="container">
     <table>
@@ -40,13 +31,12 @@
         </tbody>
     </table>
     </div>
-    <div class="container">
-        <!-- <button class="add_btn" formmethod="post" formaction="/add">添加</button> -->
-        <button class="add_btn" onclick="addRow()">添加</button>
-    </div>
+    <form class="container">
+        <button class="add_btn" formmethod="get" formaction="/add_operator_page">添加</button>
+        <!-- <button class="add_btn" onclick="addRow()">添加</button> -->
+    </form>
     <div class="container">
         <button class="find_btn" formmethod="get" formaction="/find">查找</button>
     </div>
     <script src="/js/home.js"></script>
-</body>
-</html>
+{{ end }}

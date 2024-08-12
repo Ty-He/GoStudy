@@ -1,0 +1,27 @@
+{{ define "layout" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ if eq .Type "home" }}
+        <link rel="stylesheet" href="/css/style.css">
+    {{ else if eq .Type "add_user" }}
+        <link rel="stylesheet" href="/css/add_user.css">
+    {{ else if eq .Type "response_status" }}
+        <link rel="stylesheet" href="/css/response_status.css">
+    {{ end }}
+    <title>{{ .Type }}</title>
+</head>
+<body>
+    {{ if eq .Type "home" }}
+        {{block "home" .Value}} {{end}}
+    {{ else if eq .Type "add_user" }}
+        {{block "add_user" .Value}} {{end}}
+    {{ else if eq .Type "response_status" }}
+        {{block "response_status" .Value}} {{end}}
+    {{ end }}
+</body>
+</html>
+{{ end }}

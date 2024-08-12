@@ -1,6 +1,7 @@
 package model 
 
 import (
+    "fmt"
     "log"
     "database/sql"
     _ "github.com/go-sql-driver/mysql"
@@ -51,4 +52,42 @@ func GetTotalUsers() (users []*UserInformation) {
     }
 
     return
+}
+
+// NewUser for add to db
+func NewUser(name, gender, introdution, password string) *UserInformation {
+    return &UserInformation{
+        Name: name,
+        Gender: gender,
+        Introduction: introdution,
+        Password: password,
+    }
+}
+
+// add self to database
+func (u *UserInformation) Add() error {
+    insert_sql := `insert into user_informations(name, gender, introduction, password) 
+        values(?, ?, ?, ?);`
+
+    _, err := db.Exec(insert_sql, u.Name, u.Gender, u.Introduction, u.Password)
+    if err != nil {
+        return err
+    }
+    log.Println("Exec insert:", insert_sql, u)
+    return nil
+}
+
+func (u *UserInformation) String() string {
+    return fmt.Sprintf("user[name: %s, gender: %s, introduction: %s, password: %s]",
+        u.Name, u.Gender, u.Introduction, u.Password)
+}
+
+func DeleteUser(id string) error {
+    delete_sql := `delete from user_informations 
+        where id = ?;`
+    _, err := db.Exec(delete_sql, id)
+    if err != nil {
+        return err
+    }
+    return nil
 }

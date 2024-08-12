@@ -1,5 +1,6 @@
 const ColumnSize = 6;
 const PromptInfomation = ['uid', '用户名', '性别', '简介', '密码', '操作'];
+const addr = 'http://192.168.18.128:8888';
 
 // 获取用户输入
 function getUserInformation() 
@@ -41,8 +42,19 @@ function addRow()
 }
 
 // 删除行
-function removeRow(button) {
+async function removeRow(button) {
     let row = button.parentNode.parentNode;
+    let id = row.querySelector('td').textContent.trim();
+    let url = `${addr}/del?id=${encodeURIComponent(id)}`;
+    let res = await fetch(url, {
+        method: 'DELETE'
+    });
+    if (!res.ok) {
+        alert("occur error!")
+        return;
+    }
+    
+    alert("operate ok!")
     row.parentNode.removeChild(row);
 }
 

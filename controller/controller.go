@@ -4,6 +4,7 @@ import "net/http"
 
 func RegisterHandler() {
     registerHomeHandle()
+    registerAddPageHandle()
     registerAddHandle()
     registerDelHandle()
     registerModHandle()
