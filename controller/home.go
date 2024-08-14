@@ -10,17 +10,22 @@ import (
 
 func registerHomeHandle() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        log.Println("handle home")
         // first, get home template
         // then, find all user data
-        users := model.GetTotalUsers()
+        users, err := model.GetTotalUsers()
+        if err != nil {
+            log.Println("GetTotalUsers: ", err)
+            w.WriteHeader(http.StatusBadRequest)
+            return
+        }
         // load html
         tmplData := &view.TmplData{
             Type: "home",
             Value: users,
         }
         if err := view.ExecuteTemplate(w, tmplData); err != nil {
-            log.Println(err)
+            log.Println("ExecuteTemplate: ", err)
+            w.WriteHeader(http.StatusBadRequest)
         }
     })
 }

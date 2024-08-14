@@ -1,0 +1,16 @@
+{{ define "find_user" }}
+    <form action="http://192.168.18.128:8888/find" method="get" enctype="application/x-www-form-urlencoded" class="form">
+        <h2>查找用户</h2>
+        <label class="label">
+            <input type="radio" name="option" value="id">
+            <span>按id查找</span>
+            <input type="text" name="id" class="input">
+        </label>
+        <label class="label">
+            <input type="radio" name="option" value="name">
+            <span>按名称查找</span>
+            <input type="text" name="name" class="input">
+        </label>
+        <input type="submit" class="submit">
+    </form>
+{{ end }}

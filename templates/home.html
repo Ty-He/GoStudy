@@ -1,6 +1,6 @@
 {{ define "home" }}
-    <h1 class="title">欢迎来到用户管理页面</h1>
-    <div class="container">
+<h1 class="title">欢迎来到用户管理页面</h1>
+<div class="container">
     <table>
         <thead>
             <tr>
@@ -16,13 +16,13 @@
             {{ range $i, $u := .}}
             <tr>
                 <td class="data">{{$u.Uid}}</td>
-                <td class="data">{{$u.Name}}</td>
-                <td class="data">{{$u.Gender}}</td>
-                <td class="data">{{$u.Introduction}}</td>
-                <td class="data">{{$u.Password}}</td>
+                <td class="data editable">{{$u.Name}}</td>
+                <td class="data editable">{{$u.Gender}}</td>
+                <td class="data editable">{{$u.Introduction}}</td>
+                <td class="data editable">{{$u.Password}}</td>
                 <td class="data">
-                    <button class="mod_btn" onclick="modifyRow(this)">修改</button>
-                    <button class="del_btn" onclick="removeRow(this)">删除</button>
+                    <button class="btn" onclick="modifyRow(this)">修改</button>
+                    <button class="btn" onclick="removeRow(this)">删除</button>
                 </td>
             </tr>
             {{ else }}
@@ -30,13 +30,15 @@
             {{ end }}
         </tbody>
     </table>
-    </div>
-    <form class="container">
-        <button class="add_btn" formmethod="get" formaction="/add_operator_page">添加</button>
+</div>
+<div class="form_container">
+    <form class="add_form">
+        <button class="btn" formmethod="get" formaction="/add_operator_page">添加</button>
         <!-- <button class="add_btn" onclick="addRow()">添加</button> -->
     </form>
-    <div class="container">
-        <button class="find_btn" formmethod="get" formaction="/find">查找</button>
-    </div>
-    <script src="/js/home.js"></script>
+    <form class="find_form">
+        <button class="btn" formmethod="get" formaction="/find_page">查找</button>
+    </form>
+</div>
+<script src="/js/home.js"></script>
 {{ end }}

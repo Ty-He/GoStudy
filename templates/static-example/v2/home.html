@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>User Manager</title>
+</head>
+<body>
+    <h1 class="title">欢迎来到用户管理页面</h1>
+    <div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th class="data">uid</th>
+                <th class="data">用户名</th>
+                <th class="data">用户性别</th>
+                <th class="data">用户简介</th>
+                <th class="data">用户密码</th>
+                <th class="data">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="data">1</td>
+                <td class="data editable">ty</td>
+                <td class="data editable">male</td>
+                <td class="data editable">null</td>
+                <td class="data editable">245869</td>
+                <td class="data">
+                    <button class="btn" onclick="modifyRow(this)">修改</button>
+                    <button class="btn" onclick="removeRow(this)">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="form_container">
+    <div class="add_form">
+        <!-- <button class="add_btn" formmethod="post" formaction="/add">添加</button> -->
+        <button class="btn" onclick="addRow()">添加</button>
+    </div>
+    <form class="find_form">
+        <button class="btn" formmethod="get" formaction="/find">查找</button>
+    </form>
+    </div>
+    <script src="home.js"></script>
+</body>
+</html>

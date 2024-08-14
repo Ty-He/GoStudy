@@ -14,7 +14,10 @@ func init() {
 }
 
 type TmplData struct {
+    // the name of template
     Type string 
+
+    // params of tempalte
     Value any
 } 
 

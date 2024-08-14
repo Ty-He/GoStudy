@@ -1,0 +1,49 @@
+.title {
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+table {
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.data {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.mod_btn {
+    margin: 2px;
+}
+
+.del_btn {
+    margin: 2px;
+}
+
+.add_btn {
+    margin: 10px;
+}
+
+.find_btn {
+    margin: 10px;
+}
+
+.editable {
+    cursor: pointer;
+}
+
+.editing {
+    /* background-color: #f0f8ff;
+    border: 1px solid #ccc; */
+    border: 2px solid #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.7);
+    background-color: #e6f7ff;
+    outline: none;
+}

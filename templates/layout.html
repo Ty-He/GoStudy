@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ if eq .Type "home" }}
         <link rel="stylesheet" href="/css/style.css">
-    {{ else if eq .Type "add_user" }}
-        <link rel="stylesheet" href="/css/add_user.css">
+    {{ else if or (eq .Type "add_user") (eq .Type "find_user") }}
+        <link rel="stylesheet" href="/css/input.css">
     {{ else if eq .Type "response_status" }}
         <link rel="stylesheet" href="/css/response_status.css">
     {{ end }}
@@ -21,6 +21,8 @@
         {{block "add_user" .Value}} {{end}}
     {{ else if eq .Type "response_status" }}
         {{block "response_status" .Value}} {{end}}
+    {{ else if eq .Type "find_user" }}
+        {{block "find_user" .Value}} {{end}}
     {{ end }}
 </body>
 </html>

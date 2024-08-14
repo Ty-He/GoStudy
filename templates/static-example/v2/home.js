@@ -1,6 +1,5 @@
 const ColumnSize = 6;
 const PromptInfomation = ['uid', '用户名', '性别', '简介', '密码', '操作'];
-const addr = 'http://192.168.18.128:8888';
 
 // 获取用户输入
 function getUserInformation() 
@@ -43,19 +42,23 @@ function addRow()
 
 // 删除行
 async function removeRow(button) {
+    try {
     let row = button.parentNode.parentNode;
-    let id = row.querySelector('td').textContent.trim();
-    let url = `${addr}/del?id=${encodeURIComponent(id)}`;
-    let res = await fetch(url, {
-        method: 'DELETE'
+    // 获取第一个单元格
+    let id = row.querySelector('td').textContent;
+    let res = await fetch('http://192.168.18.128:8888/del?id=' + id, {
+        method:'DELETE'
     });
+    console.log(res);
     if (!res.ok) {
-        alert("occur error!")
+        alert('error');
         return;
     }
-    
-    alert("operate ok!")
+    alert('operate ok')
     row.parentNode.removeChild(row);
+    } catch(err) {
+        console.log(err);
+    }
 }
 
 // 获取整行的数据，发出patch请求
@@ -72,8 +75,7 @@ async function modifyRow(button) {
 
     console.log(JSON.stringify(jsonObj));
 
-    let url = `${addr}/mod`;
-    let res = await fetch(url, {
+    let res = await fetch('http://192.168.18.128:8888/mod', {
         method: 'PATCH',
         headers: {
             'Content-Type':'application/json'

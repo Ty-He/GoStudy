@@ -3,6 +3,7 @@ package controller
 import (
     "log"
     "net/http"
+    "strconv"
 
     "github.com/ty/crud_web/model"
 )
@@ -13,21 +14,17 @@ func registerDelHandle() {
         //     http.NotFound(w, r)
         //     return
         // }
-        log.Println("handle delete method")
-        // CROS
-        w.Header().Set("Access-Control-Allow-Origin", "*")
-        w.Header().Set("Access-Control-Allow-Methods", "DELETE, OPTIONS")
-        w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-        // handle preflight request
-        if r.Method == http.MethodOptions {
-            w.WriteHeader(http.StatusOK)
+        id_str := r.URL.Query().Get("id")
+        id, err := strconv.Atoi(id_str)
+        if err != nil {
+            log.Println("Atoi err:", err)
+            w.WriteHeader(http.StatusBadRequest)
             return
         }
 
-        id := r.URL.Query().Get("id")
         // delete record by id 
-        err := model.DeleteUser(id)
+        err = model.DeleteUser(uint32(id))
         if err != nil {
             log.Println("DeleteUser: ", err)
             w.WriteHeader(http.StatusBadRequest)
