@@ -40,6 +40,7 @@ void test_kmp_by_file()
     perror("read");
     return;
   }
+  close(fd);
 
   char target[] = "slice";
   slice s1 = pattern_match(BF, buf, target);
@@ -47,6 +48,8 @@ void test_kmp_by_file()
 
   if (s1->len != s2->len) {
     printf("pattern_match failed\n");
+    destroy(s1);
+    destroy(s2);
     return;
   }
 
@@ -55,6 +58,8 @@ void test_kmp_by_file()
 
     if (s1->data[i] != s2->data[i]) {
       printf("pattern_match failed\n");
+      destroy(s1);
+      destroy(s2);
       return;
     }
 
@@ -69,10 +74,15 @@ void test_kmp_by_file()
         printf("not match charnot match char:%c\n", *(buf + s1->data[i] + j));
         printf("index = %d\n", s1->data[i]);
         printf("pattern_match failed\n");
+        destroy(s1);
+        destroy(s2);
         return;
       }
     }
   }
+
+  destroy(s1);
+  destroy(s2);
 
   printf("pattern_match pass\n");
 #endif
