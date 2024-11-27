@@ -1,4 +1,4 @@
-div/build
-div/run.sh
+build
+run.sh
 test_*
-div/.cache
+.cache
